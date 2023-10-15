@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Картотека пользователей</title>
+</head>
+<header>
+    <h1>Картотека пользователей</h1>
+</header>
+
+<body>
+<div th:each="person : ${people}">
+  <a th:href="@{/people/{id}(id=${person.getId()})}"
+     th:text="${person.getFullName() + ' (' + person.getYearOfBirth() + ' г.р.)'}">VALUE</a>
+</div>
+<hr/>
+<table>
+    <tr>
+        <td>
+            <form th:action="@{/people/addNew}">
+                <input type="submit" value="Добавить нового пользователя библиотеки"/>
+            </form>
+        </td>
+        <td>
+            <a href="/books">Картотека книг</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

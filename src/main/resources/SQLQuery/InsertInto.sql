@@ -1,0 +1,21 @@
+INSERT INTO person(full_name, year_of_birth) VALUES ('Иванов Иван Иванович', 1985);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Петрова Анна Александровна', 1990);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Смирнов Алексей Владимирович', 1980);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Козлов Андрей Петрович', 1978);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Григорьева Екатерина Сергеевна', 1995);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Федоров Павел Дмитриевич', 1987);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Морозова Ольга Игоревна', 1992);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Соколов Михаил Анатольевич', 1982);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Никитина Мария Юрьевна', 1993);
+INSERT INTO person(full_name, year_of_birth) VALUES ('Лебедев Денис Николаевич', 1989);
+
+INSERT INTO book (title, author, year_of_publication) VALUES ('Война и мир', 'Толстой Лев Николаевич', 1869);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Гордость и предубеждение', 'Остин Джейн', 1813);
+INSERT INTO book (title, author, year_of_publication) VALUES ('1984', 'Оруэлл Джордж', 1949);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Улисс', 'Джойс Джеймс', 1922);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Мастер и Маргарита', 'Булгаков Михаил Афанасьевич', 1967);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Маленький принц', 'Сент-Экзюпери Антуан де', 1943);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Три товарища', 'Ремарк Эрих Мария', 1936);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Преступление и наказание', 'Достоевский Фёдор Михайлович', 1866);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Алиса в Стране чудес', 'Кэрролл Льюис', 1865);
+INSERT INTO book (title, author, year_of_publication) VALUES ('Гарри Поттер и философский камень', 'Роулинг Джоан Кэтлинн', 1997);

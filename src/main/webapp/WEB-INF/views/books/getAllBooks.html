@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Картотека книг</title>
+</head>
+<header>
+    <h1>Картотека книг</h1>
+</header>
+
+<body>
+<div th:each="book : ${books}">
+  <a th:href="@{/books/{id}(id=${book.getId()})}"
+     th:text="${book.getTitle() + ' (' + book.getAuthor() + ' - ' + book.getYearOfPublication() + ' г.)'}">VALUE</a>
+</div>
+<hr/>
+<table>
+    <tr>
+        <td>
+            <form th:action="@{/books/addNew}">
+                <input type="submit" value="Добавить новую книгу"/>
+            </form>
+        </td>
+        <td>
+            <a href="/people">Картотека пользователей</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
