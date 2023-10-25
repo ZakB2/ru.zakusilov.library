@@ -11,7 +11,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springVersion>6.0.11</springVersion>
+        <springVersion>6.0.13</springVersion>
     </properties>
 
     <dependencies>
@@ -46,6 +46,16 @@
             <version>${springVersion}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring6</artifactId>
             <version>3.1.2.RELEASE</version>
@@ -62,9 +72,14 @@
             <version>8.0.1.Final</version>
         </dependency>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.3.1.Final</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.18</version>
+            <version>42.6.0</version>
         </dependency>
     </dependencies>
 
