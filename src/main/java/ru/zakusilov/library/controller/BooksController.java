@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")
-public class BookController {
+public class BooksController {
 
     private final BookDAO bookDAO;
     private final PersonDAO personDAO;
@@ -24,7 +24,7 @@ public class BookController {
     private final BookValidator bookValidator;
 
     @Autowired
-    public BookController(BookDAO bookDAO, PersonDAO personDAO, BookValidator bookValidator) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO, BookValidator bookValidator) {
         this.bookDAO = bookDAO;
         this.personDAO = personDAO;
         this.bookValidator = bookValidator;
