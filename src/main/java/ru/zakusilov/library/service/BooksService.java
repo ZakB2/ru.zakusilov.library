@@ -7,6 +7,7 @@ import ru.zakusilov.library.entity.Book;
 import ru.zakusilov.library.repository.BooksRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,6 +26,14 @@ public class BooksService {
 
     public Book findById(int id) {
         return booksRepository.findById(id).orElse(null);
+    }
+
+     public Optional<Book> findByTitle(String title){
+        return booksRepository.findByTitle(title);
+    }
+
+    public Optional<Book> findByAuthor(String author){
+        return findByAuthor(author);
     }
 
     @Transactional
