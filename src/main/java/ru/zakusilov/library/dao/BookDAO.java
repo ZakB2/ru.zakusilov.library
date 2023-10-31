@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.zakusilov.library.entity.Book;
 import ru.zakusilov.library.entity.Person;
 
 import java.util.Optional;
@@ -17,20 +16,6 @@ public class BookDAO {
     @Autowired
     public BookDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public Optional<Book> findByTitle(String title) {
-        return jdbcTemplate.query("SELECT * FROM Book WHERE title = ?",
-                        new Object[]{title},
-                        new BeanPropertyRowMapper<>(Book.class)).
-                stream().findAny();
-    }
-
-    public Optional<Book> findByAuthor(String author) {
-        return jdbcTemplate.query("SELECT * FROM Book WHERE author = ?",
-                        new Object[]{author},
-                        new BeanPropertyRowMapper<>(Book.class)).
-                stream().findAny();
     }
 
     public Optional<Person> findPersonByBookId(int id) {
