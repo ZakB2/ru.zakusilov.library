@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.zakusilov.library.dao.BookDAO;
 import ru.zakusilov.library.entity.Book;
+import ru.zakusilov.library.service.BooksService;
 
 @Component
 public class BookValidator implements Validator {
 
-    private final BookDAO bookDAO;
+    private final BooksService booksService;
 
     @Autowired
-    public BookValidator(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
+    public BookValidator(BooksService booksService) {
+        this.booksService = booksService;
     }
 
     @Override
@@ -25,12 +25,10 @@ public class BookValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Book book = (Book) target;
-
-        if (bookDAO.findByTitle(book.getTitle()).isPresent()) {
-            if (bookDAO.findByAuthor(book.getAuthor()).isPresent()) {
-                errors.rejectValue("title", "", "Книга с таким названием уже существует");
-                errors.rejectValue("author", "", "Книга с таким автором уже существует");
-            }
+        if (booksService.findByTitle(book.getTitle()).isPresent() &&
+                booksService.findByAuthor(book.getAuthor()).isPresent()) {
+            errors.rejectValue("title", "", "Книга с таким названием уже существует");
+            errors.rejectValue("author", "", "Книга с таким автором уже существует");
         }
     }
 }
