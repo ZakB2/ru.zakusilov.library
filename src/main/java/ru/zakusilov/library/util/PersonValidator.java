@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.zakusilov.library.dao.PersonDAO;
 import ru.zakusilov.library.entity.Person;
+import ru.zakusilov.library.service.PeopleService;
 
 @Component
 public class PersonValidator implements Validator {
 
-    private final PersonDAO personDAO;
+    private final PeopleService peopleService;
 
     @Autowired
-    public PersonValidator(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PersonValidator(PeopleService peopleService) {
+        this.peopleService = peopleService;
     }
 
     @Override
@@ -25,14 +25,10 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = ((Person) target);
-
-        personDAO.findByFullName(person.getFullName());
-
-        if (personDAO.findByFullName(person.getFullName()).isPresent()) {
-            if (personDAO.findByYearOfBirth(person.getYearOfBirth()).isPresent()) {
-                errors.rejectValue("fullName", "", "Пользователь с таким именем уже существует");
-                errors.rejectValue("yearOfBirth", "", "Пользователь с таким годом рождения уже существует");
-            }
+        if (peopleService.findByFullName(person.getFullName()).isPresent() &&
+                peopleService.findByYearOfBirth(person.getYearOfBirth()).isPresent()) {
+            errors.rejectValue("fullName", "", "Пользователь с таким именем уже существует");
+            errors.rejectValue("yearOfBirth", "", "Пользователь с таким годом рождения уже существует");
         }
     }
 }
