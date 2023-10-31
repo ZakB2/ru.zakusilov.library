@@ -7,6 +7,7 @@ import ru.zakusilov.library.entity.Person;
 import ru.zakusilov.library.repository.PeopleRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,6 +26,14 @@ public class PeopleService {
 
     public Person findById(int id) {
         return peopleRepository.findById(id).orElse(null);
+    }
+
+    public Optional<Person> findByFullName(String fullName) {
+        return peopleRepository.findByFullName(fullName);
+    }
+
+    public Optional<Person> findByYearOfBirth(int yearOfBirth) {
+        return peopleRepository.findByYearOfBirth(yearOfBirth);
     }
 
     @Transactional
