@@ -32,7 +32,7 @@ public class Book {
             message = "Полное имя автора должно быть в следующем формате: Фамилия Имя Отчество (при наличии)")
     private String author;
 
-    @Column
+    @Column(name = "year_of_publication")
     @Min(value = 1500, message = "Год публикации должен быть больше или равен 1500 году")
     private int yearOfPublication;
 
