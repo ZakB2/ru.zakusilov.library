@@ -20,20 +20,8 @@ public class PersonDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> getAll() {
-        return jdbcTemplate.query("SELECT * FROM Person ORDER BY full_name",
-                new BeanPropertyRowMapper<>(Person.class));
-    }
-
-    public Person findById(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id = ?",
-                        new Object[]{id},
-                        new BeanPropertyRowMapper<>(Person.class)).
-                stream().findAny().orElse(null);
-    }
-
     public Optional<Person> findByFullName(String fullName) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE full_name = ?",
+        return jdbcTemplate.query("SELECT * FROM Person WHERE full_name = ?",
                         new Object[]{fullName},
                         new BeanPropertyRowMapper<>(Person.class)).
                 stream().findAny();
@@ -52,22 +40,5 @@ public class PersonDAO {
                         "WHERE person_id = ?",
                 new Object[]{id},
                 new BeanPropertyRowMapper<>(Book.class));
-    }
-
-    public void createNew(Person person) {
-        jdbcTemplate.update("INSERT INTO Person (full_name, year_of_birth) VALUES (?, ?)",
-                person.getFullName(),
-                person.getYearOfBirth());
-    }
-
-    public void updateById(int id, Person updatePerson) {
-        jdbcTemplate.update("UPDATE Person SET full_name = ?, year_of_birth = ? WHERE id = ?",
-                updatePerson.getFullName(),
-                updatePerson.getYearOfBirth(),
-                id);
-    }
-
-    public void deleteById(int id) {
-        jdbcTemplate.update("DELETE FROM Person WHERE id = ?", id);
     }
 }
