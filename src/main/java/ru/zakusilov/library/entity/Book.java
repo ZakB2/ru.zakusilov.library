@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 @Getter
@@ -36,9 +39,23 @@ public class Book {
     @Min(value = 1500, message = "Год публикации должен быть больше или равен 1500 году")
     private int yearOfPublication;
 
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
+
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "book_people_history", joinColumns = @JoinColumn(name = "book_id"))
+    @Column(name = "person")
+    private List<String> peopleHistory = new ArrayList<>();
+
     public Book(String title, String author, int yearOfPublication) {
         this.title = title;
         this.author = author;
         this.yearOfPublication = yearOfPublication;
+    }
+
+    @Override
+    public String toString() {
+        return  title + ", " + author + ", " + yearOfPublication + " г.";
     }
 }
