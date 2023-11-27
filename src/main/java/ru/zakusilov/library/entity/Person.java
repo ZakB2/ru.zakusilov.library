@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 @Getter
@@ -28,8 +31,21 @@ public class Person {
     @Max(value = 2010, message = "Год рождения пользователя должен быть меньше или равен 2010 году")
     private int yearOfBirth;
 
+    @OneToMany(mappedBy = "person")
+    private List<Book> books;
+
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "person_books_history", joinColumns = @JoinColumn(name = "person_id"))
+    @Column(name = "book")
+    private List<String> booksHistory = new ArrayList<>();
+
     public Person(String fullName, int yearOfBirth) {
         this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return fullName + ", " + yearOfBirth + " г.р.";
     }
 }
